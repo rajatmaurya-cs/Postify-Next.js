@@ -1,5 +1,5 @@
-import Navbar from "./components/Navbar";
-import Footer from './components/Footer'
+import Navbar from "../components/Navbar";
+import Footer from '../components/Footer'
 import Header from './components/Header'
 
 const page = () => {
@@ -8,6 +8,7 @@ const page = () => {
 
         <Navbar/>
         <Header/>
+        {/* <Main/> */}
         <Footer/>
       
     </div>
