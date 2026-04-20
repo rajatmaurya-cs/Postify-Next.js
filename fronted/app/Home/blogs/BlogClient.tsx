@@ -70,7 +70,7 @@ export default function BlogClient({ initialData }: Props) {
 
   return (
     <section className="max-w-7xl mx-auto px-4 py-8 space-y-6">
-      {/* Search */}
+      
       <input
         type="text"
         placeholder="Search blogs..."

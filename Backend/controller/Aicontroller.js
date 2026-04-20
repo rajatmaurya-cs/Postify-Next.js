@@ -1,0 +1,91 @@
+
+
+/*----------------------------------Prompts---------------------------------------------------*/
+import {blogPrompt} from './Service/Prompts/Prompt.js'
+import {summaryPrompt} from './Service/Prompts/Prompt.js'
+
+
+import { contentGenerationService } from "./Service/AiEngine/Aiservice.js";
+
+import {articleSummariser} from './Service/AiEngine/Aiservice.js'
+
+
+
+export const generateContent = async (req, res) => {
+  try {
+
+    if (!req.user) {
+      return res.status(401).json({ success:false, message:"Login required" });
+    }
+    
+
+    const {title , subTitle} = req.body;
+
+
+    const prompt = blogPrompt(title , subTitle)
+    const result = await contentGenerationService({
+      user: req.user,
+      prompt: prompt
+    });
+
+    return res.status(200).json({
+      success: true,
+      content: result
+    });
+
+  } catch (error) {
+      console.log(error)
+    return res.status(error.status || 500).json({
+      success:false,
+      message:error.message || "AI generation failed"
+    });
+
+  }
+};
+
+
+
+export const summariseArticle = async (req, res) => {
+  try {
+     
+    if (!req.user) {
+      return res.status(401).json({ success:false, message:"Login required" });
+    }
+    const {content} = req.body;
+
+    console.log("Entered in summariseArticle backend")
+
+   
+
+    const prompt = summaryPrompt(content)
+    
+    const result = await articleSummariser({
+      user: req.user,
+      prompt: prompt
+    });
+
+    return res.status(200).json({
+      success: true,
+      content: result
+    });
+
+  } catch (error) {
+  console.log("The Error is : ", error);
+
+  return res.status(error.status || 500).json({
+    success: false,
+    message: error.message || "AI Summariser failed"
+  });
+}
+
+
+  }
+
+
+
+
+
+
+
+
+

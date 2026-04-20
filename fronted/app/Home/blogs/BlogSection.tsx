@@ -10,7 +10,7 @@ type BlogSectionProps = {
 async function fetchBlogs({ category = "All", search = "", page = 1, limit = 3, }: BlogSectionProps) {
 
   const endpoint =
-    "https://postifybackend-six.vercel.app/api/blog/allblog";
+    "https://postifybackend-six.vercel.app/api/blog/allblog" ;
 
   const url = `${endpoint}?page=${page}&limit=${limit}&category=${category}&search=${search}`;
 

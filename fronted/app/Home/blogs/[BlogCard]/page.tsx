@@ -1,13 +1,21 @@
+import Blogserver from "./Blogserver";
 
+type BlogCardProps = {
+  params: Promise<{
+    BlogCard: string;
+  }>;
+};
 
-const BlogCard = () => {
+const BlogCard = async ({ params }: BlogCardProps) => {
+  const paramsData = await params;
+  const id = paramsData.BlogCard;
+  console.log(id);
+
   return (
-    <div className="min-h-screen min-w-full bg-black text-white flex items-center justify-center text-8xl">
-
-        🎆
-      
+    <div>
+      <Blogserver Id={id} />
     </div>
-  )
-}
+  );
+};
 
-export default BlogCard
+export default BlogCard;

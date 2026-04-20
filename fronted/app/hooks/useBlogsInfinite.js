@@ -7,7 +7,7 @@ export function useBlogsInfinite({
 }) {
   const endpoint =
   
-    "http://localhost:3000/api/blog/allblog";
+     "http://localhost:3000/api/blog/allblog";
 
   return useInfiniteQuery({
     queryKey: ["blogs", category, limit],
