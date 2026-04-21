@@ -1,9 +1,8 @@
 import React from "react";
 import Blogclient from "./Blogclient";
-import api from "../../../../lib/axios";
 
 type Blog = {
-  
+  _id: string;
   title: string;
   subTitle: string;
   content: string;
@@ -11,7 +10,6 @@ type Blog = {
   image: string;
   isPublished: boolean;
   contentSource: string;
-
   aiAnalysis: {
     words: number;
     sentences: number;
@@ -20,10 +18,19 @@ type Blog = {
     totalScore: number;
     verdict: string;
   };
-
   createdAt: string;
   updatedAt: string;
+  createdBy: {
+    _id: string;
+    fullName: string;
+    email: string;
+    avatar: string;
+  };
+};
 
+type BlogResponse = {
+  success: boolean;
+  blog: Blog;
 };
 
 type BlogServerProps = {
@@ -32,17 +39,18 @@ type BlogServerProps = {
 
 const Blogserver = async ({ Id }: BlogServerProps) => {
 
-  console.log("The id is: ",Id);
+  const res = await fetch(
+  `${process.env.NEXT_PUBLIC_API_URL}/blog/blogbyid/${Id}?blogId=${Id}`,
+  {
+    cache: "force-cache",
+  }
+);
 
-  const { data: blog } = await api.get<Blog>(`http://localhost:3000/api/blog/blogbyid/${Id}`, {
-    params: {
-      blogId: Id,
-    },
-  });
+  const data: BlogResponse = await res.json();
 
   return (
     <div>
-      <Blogclient blog={blog} />
+      <Blogclient blog={data.blog} />
     </div>
   );
 };

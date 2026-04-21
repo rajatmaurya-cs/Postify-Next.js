@@ -1,5 +1,5 @@
 "use client";
-
+import { blogCategories } from "@/app/assets/assets";
 import { useState } from "react";
 import { useBlogsInfinite } from "../../hooks/useBlogsInfinite";
 import Link from "next/link";
@@ -79,15 +79,9 @@ export default function BlogClient({ initialData }: Props) {
         className="w-full rounded-xl border border-gray-300 px-4 py-3 outline-none focus:ring-2 focus:ring-black"
       />
 
-      {/* Categories */}
+      
       <div className="flex flex-wrap gap-3">
-        {[
-          "All",
-          "Technology",
-          "Health & Wellness",
-          "Finance",
-          "Lifestyle",
-        ].map((cat) => (
+        { blogCategories.map((cat) => (
           <button
             key={cat}
             onClick={() => setActiveCategory(cat)}

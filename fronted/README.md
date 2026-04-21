@@ -37,3 +37,6 @@ Blog Structre
 
 
 Local server: http://localhost:3000/api/blog/allblog
+
+
+http://localhost:3000/api/comment/allcomment/69b6f17cd39497b12af63b76

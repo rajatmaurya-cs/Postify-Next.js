@@ -4,16 +4,14 @@ export function useBlogsInfinite({
   category = "All",
   limit = 3,
   initialData,
-}) {
-  const endpoint =
-  
-     "http://localhost:3000/api/blog/allblog";
+} = {}) {
+  const endpoint = "https://postifybackend-six.vercel.app/api/blog/allblog";
 
   return useInfiniteQuery({
     queryKey: ["blogs", category, limit],
 
     queryFn: async ({ pageParam = 1 }) => {
-
+      
       const url = `${endpoint}?page=${pageParam}&limit=${limit}&category=${category}`;
 
       const res = await fetch(url);
@@ -31,17 +29,18 @@ export function useBlogsInfinite({
       return data;
     },
 
-    initialData: initialData
-      ? {
-          pages: [initialData],
-          pageParams: [1],
-        }
-      : undefined,
+    initialData:
+      category === "All" && initialData
+        ? {
+            pages: [initialData],
+            pageParams: [1],
+          }
+        : undefined,
 
     getNextPageParam: (lastPage) =>
       lastPage?.hasMore ? lastPage.nextPage : undefined,
 
-    staleTime: 30_000,
+    staleTime: 30000,
     refetchOnWindowFocus: false,
     retry: 1,
   });

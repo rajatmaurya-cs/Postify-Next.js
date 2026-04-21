@@ -1,4 +1,4 @@
-import BlogSection from "../blogs/BlogSection";
+import BlogSection from "../blogs/BlogServer";
 
 export default function Main() {
   return (
