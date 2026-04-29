@@ -2,32 +2,33 @@
 import { Suspense } from "react";
 import Blogserver from "./Blogserver";
 import Commentserver from "./CommentServer";
-import BlogSkeleton from "./BlogSkeleton";
-
-
+import BlogSkeleton from "./Loading";
 
 type BlogCardProps = {
   params: Promise<{
-    BlogCard: string;
+    Blogcard: string;
   }>;
 };
 
 const BlogCard = async ({ params }: BlogCardProps) => {
+
   const paramsData = await params;
-  const id = paramsData.BlogCard;
+
+  const id = paramsData.Blogcard;
+  
   console.log(id);
 
 
   return (
- 
+
     <div className="space-y-8">  
-     
+
       <div className="mb-6">
         <h1 className="text-3xl font-bold">Blog Post</h1>
-      
+
       </div>
 
-     
+
       <Suspense fallback={<BlogSkeleton />}>
         <Blogserver Id={id} />
       </Suspense>
@@ -40,3 +41,6 @@ const BlogCard = async ({ params }: BlogCardProps) => {
 };
 
 export default BlogCard;
+
+
+

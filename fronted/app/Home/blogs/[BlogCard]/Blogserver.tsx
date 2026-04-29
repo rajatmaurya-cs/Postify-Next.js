@@ -39,12 +39,18 @@ type BlogServerProps = {
 
 const Blogserver = async ({ Id }: BlogServerProps) => {
 
+  const start:number = Date.now();
+
   const res = await fetch(
-  `${process.env.NEXT_PUBLIC_API_URL}/blog/blogbyid/${Id}?blogId=${Id}`,
+  `https://postifybackend-six.vercel.app/api/blog/blogbyid/${Id}?blogId=${Id}`,
   {
     cache: "force-cache",
   }
 );
+
+const end:number = Date.now();
+
+console.log("The Time taken to fetch blogs:",((end-start) || 0)/1000)
 
   const data: BlogResponse = await res.json();
 

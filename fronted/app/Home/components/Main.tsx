@@ -1,9 +1,9 @@
-import BlogSection from "../blogs/BlogServer";
+import BlogServer from "../blogs/BlogServer";
 
 export default function Main() {
   return (
     <main>
-      <BlogSection />
+      <BlogServer />
     </main>
   );
 }

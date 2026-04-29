@@ -3,7 +3,7 @@
 import { useQuery } from "@tanstack/react-query";
 import api from "@/lib/axios";
 
-const fetchBlog = async (Id: string) => {
+const fetchBlog = async (Id) => {
 
   const { data } = await api.get(`/blog/blogbyid/${Id}`, {
 
@@ -14,7 +14,7 @@ const fetchBlog = async (Id: string) => {
   return data.blog;
 };
 
-export const useBlog = (Id: string, initialData?: any) => {
+export const useBlog = (Id, initialData) => {
   return useQuery({
     queryKey: ["blog", Id],
     queryFn: () => fetchBlog(Id),

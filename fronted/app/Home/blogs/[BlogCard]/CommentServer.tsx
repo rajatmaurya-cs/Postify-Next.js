@@ -1,4 +1,3 @@
-import api from "@/lib/axios";
 import CommentClient from "./CommentClient";
 
 type BlogId = {
@@ -33,11 +32,28 @@ type CommentResponse = {
 };
 
 const Commentserver = async ({ Id }: BlogId) => {
-  const { data } = await api.get<CommentResponse>(
-    `https://postifybackend-six.vercel.app/api/comment/allcomment/${Id}`
+  const start: number = Date.now();
+
+  const res = await fetch(
+    `https://postifybackend-six.vercel.app/api/comment/allcomment/${Id}`,
+    {
+      method: "GET",
+      cache: "no-store", // fresh data every request
+    }
   );
 
-  console.log("The CommentServer.tsx is:",data);
+  if (!res.ok) {
+    throw new Error("Failed to fetch comments");
+  }
+
+  const data: CommentResponse = await res.json();
+
+  const end: number = Date.now();
+
+  console.log(
+    "The time taken to fetch the comments:",
+    ((end - start) || 0) / 1000
+  );
 
   return (
     <div>
