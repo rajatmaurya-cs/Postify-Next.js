@@ -80,7 +80,8 @@ app.use("/api/auth", authRoutes);
 
 app.use("/api/blog",(req,res,next)=>{ 
 
-  console.log("Entered in blog container");
+  console.log("Entered in /api/blog on Index.js");
+  
   next()
   
 },blogRouter);

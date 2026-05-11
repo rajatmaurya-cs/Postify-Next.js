@@ -185,7 +185,7 @@ export const BlogAdmin = async (req, res) => {
   const total = await Blog.countDocuments(filter);
 
   const blogs = await Blog.find(filter)
-    .select("title")
+    .select("title isPublished subTitle createdAt")
     .sort({ createdAt: -1 })
     .skip(skip)
     .limit(limit)
@@ -287,18 +287,22 @@ export const deleteBlog = async (req, res) => {
 export const toggleblogpublish = async (req, res) => {
   try {
 
-    if (!req.user) {
-      return res.status(404).json({
-        success: false,
-        message: "Please Login"
-      })
-    }
+    // if (!req.user) {
+    //   return res.status(404).json({
+    //     success: false,
+    //     message: "Please Login"
+    //   })
+    // }
+
+    console.log("Entered in toggleblegpublish")
 
 
     const { blogId } = req.body;
 
 
     const blog = await Blog.findById(blogId);
+
+    console.log("The blog that has to be delete : ",blog.title)
 
 
     if (!blog) {
@@ -308,9 +312,15 @@ export const toggleblogpublish = async (req, res) => {
       });
     }
 
+    console.log("The current Status of blog is: ",blog.isPublished)
+
     blog.isPublished = !blog.isPublished;
-    blog.moderatedBy = req.user.id
+
+    // blog.moderatedBy = req.user.id
+
     await blog.save();
+
+    console.log("Now after the current status blog: ",blog.isPublished)
 
     res.json({ success: true, message: "Blog updated status successfully" });
   } catch (error) {

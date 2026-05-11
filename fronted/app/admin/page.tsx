@@ -1,5 +1,5 @@
 import React from 'react'
-// import BlogServer from '../admin/dashboard/BlogServer'
+import { Suspense } from 'react'
 
 import StatusServer from '../admin/dashboard/StatusServer'
 
@@ -9,9 +9,15 @@ const Page = () => {
   return (
     <div>
 
-      <BlogServer />
+       <Suspense fallback={<p>Loading Status...</p>}>
+        <StatusServer />
+      </Suspense>
 
-      <StatusServer />
+      <Suspense fallback={<p>Loading Blogs...</p>}>
+        <BlogServer />
+      </Suspense>
+
+     
     </div>
   )
 }

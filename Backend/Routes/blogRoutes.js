@@ -28,7 +28,15 @@ blogRouter.get('/blogbyid/:blogId',getblogbyid)
 
 
 /* ================= toggleBlog================= */
-blogRouter.post("/toggle-blog",authMiddleware ,adminMiddleware, toggleblogpublish)
+// blogRouter.post("/toggle-blog",authMiddleware ,adminMiddleware, toggleblogpublish)
+
+blogRouter.post("/toggle-blog",(req,res , next)=>{
+
+console.log("blogrouter.pos(/toggle-blog)")
+
+next()
+
+}, toggleblogpublish)
 
 
 /* ================= Delete Blog ================= */
