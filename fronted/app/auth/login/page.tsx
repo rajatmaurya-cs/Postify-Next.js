@@ -308,6 +308,7 @@ export default function LoginPage() {
 
             {}
 
+            {/* 
             <div className="relative my-8">
 
               <div className="absolute inset-0 flex items-center">
@@ -335,8 +336,6 @@ export default function LoginPage() {
 
               </div>
             </div>
-
-            {}
 
             <button
               type="button"
@@ -410,6 +409,7 @@ export default function LoginPage() {
                 </div>
               </div>
             </button>
+            */}
 
             {}
 

@@ -583,6 +583,7 @@ return (
       )}
 
       {}
+      {/* 
       <div className="relative my-8">
 
         <div className="absolute inset-0 flex items-center">
@@ -605,7 +606,6 @@ return (
         </div>
       </div>
 
-      {}
       <button
         type="button"
         onClick={() => {
@@ -639,6 +639,7 @@ return (
 
         <span>Continue with Google</span>
       </button>
+      */}
 
       {}
       <p className="text-center text-[#8b90a0] mt-8 text-sm">
