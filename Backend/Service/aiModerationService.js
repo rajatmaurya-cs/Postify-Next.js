@@ -1,4 +1,5 @@
 import groq from "../Config/Gemini.js";
+import Config from "../Models/Config.js";
 
 const MODERATION_PROMPT = `
 
@@ -80,8 +81,10 @@ export const aimoderation = async (text) => {
 
     try {
 
+        const config = await Config.findOne();
+
         const res = await groq.chat.completions.create({
-            model: "llama-3.1-8b-instant",
+            model: config.aiModel,
             temperature: 0, 
             messages: [
                 {

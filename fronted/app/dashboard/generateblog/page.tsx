@@ -107,9 +107,9 @@ const editorConfig = {
 };
 
 const models = [
-  { id: 'llama-3.1-8b-instant', name: 'Meta 3.2', desc: 'Fast' },
-  { id: 'meta-llama/llama-4-scout-17b-16e-instruct', name: 'Claude', desc: 'Advanced code & Debugging' },
-  { id: 'llama-3.3-70b-versatile', name: 'Copilot', desc: 'Advanced Math Problems' },
+  { id: 'openai/gpt-oss-120b', name: 'Meta 3.2', desc: 'Fast' },
+  { id: 'openai/gpt-oss-120b', name: 'Claude', desc: 'Advanced code & Debugging' },
+  { id: 'openai/gpt-oss-120b', name: 'Copilot', desc: 'Advanced Math Problems' },
   { id: 'openai/gpt-oss-120b', name: 'ChatGPT 5.1', desc: 'Tough Reasoning' },
 ]
 
